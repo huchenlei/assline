@@ -117,18 +117,20 @@ local function loadAssline(recipe, fluidLocations)
 
         -- Load item.
         robot.select(currentInventorySlot);
-        local itemToLoad = recipe.inputItems[i];
-        local itemAmount = itemToLoad[2];
+        if recipe.inputItems[i] ~= nil then
+            local itemToLoad = recipe.inputItems[i];
+            local itemAmount = itemToLoad[2];
 
-        local itemStack = inventory_controller.getStackInInternalSlot(currentInventorySlot);
-        if itemStack.size < itemAmount then 
-            print(string.format("Fatal: Need %i %s, but only get %i at slot %i", itemAmount, itemToLoad[1], itemStack.size, i));
-            return false;
-        else if itemStack.size == itemAmount then
-            inventory_controller.dropIntoSlot(sides.up, 1);
-            currentInventorySlot = currentInventorySlot + 1;
-        else -- itemStack.size > itemAmount
-            inventory_controller.dropIntoSlot(sides.up, 1, itemAmount);
+            local itemStack = inventory_controller.getStackInInternalSlot(currentInventorySlot);
+            if itemStack.size < itemAmount then 
+                print(string.format("Fatal: Need %i %s, but only get %i at slot %i", itemAmount, itemToLoad[1], itemStack.size, i));
+                return false;
+            elseif itemStack.size == itemAmount then
+                inventory_controller.dropIntoSlot(sides.up, 1);
+                currentInventorySlot = currentInventorySlot + 1;
+            else -- itemStack.size > itemAmount
+                inventory_controller.dropIntoSlot(sides.up, 1, itemAmount);
+            end
         end
     end
     

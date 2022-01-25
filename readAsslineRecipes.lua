@@ -9,15 +9,13 @@ local sides = require('sides');
 local component = require('component');
 local inventory_controller = component.inventory_controller;
 
-local DATASTICK_LABEL = 'gt.metaitem.01.32708.name';
-
 function readRecipes(side) 
     local recipes = {};
 
     for i=1, inventory_controller.getInventorySize(side) do
         local datastick = inventory_controller.getStackInSlot(side, i);
         
-        if datastick ~= nil and datastick.label == DATASTICK_LABEL then 
+        if datastick ~= nil then 
             local recipe = {
                 inputFluids=datastick.inputFluids,
                 inputItems=datastick.inputItems,
@@ -37,7 +35,7 @@ function readFluids(side)
     for i=1, inventory_controller.getInventorySize(side) do
         local datastick = inventory_controller.getStackInSlot(side, i);
         
-        if datastick ~= nil and datastick.label == DATASTICK_LABEL then 
+        if datastick ~= nil then 
             for _, fluid in ipairs(datastick.inputFluids) do
                 local fluidName = fluid[1];
                 if fluids[fluidName] == nil then
