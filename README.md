@@ -5,6 +5,14 @@ Because there are only 4 files and the internet card in GTNH is very annoying to
 copying each file to the open computer robots with `insert` key.
 (Will add a installation script if many people request it.)
 
+## OC Robot Requirements
+- Inventory Controller upgrade
+- Inventory upgrade
+- Tank Controller upgrade
+- Tank upgrade
+- Keyboard
+- Screen
+
 ## Usage
 By default the script assumes that the assembling line length is 11. Change it in `assline.lua` if necessary.  
 
